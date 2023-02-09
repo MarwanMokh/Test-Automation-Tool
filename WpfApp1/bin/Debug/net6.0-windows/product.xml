@@ -1,0 +1,223 @@
+<?xml version="1.0"?>
+<Results version="1.0">
+<ReportNode type="testrun">
+<ReportNode type="Iteration">
+<ReportNode type="Action">
+<ReportNode type="Context">
+<ReportNode type="Step">
+<Data>
+    <Name>Edit.Click</Name>
+    <Description />
+    <StartTime>2023-02-09 13:15:05</StartTime>
+    <Result>Done</Result>
+    <Extension>
+      <TestObject>
+        <Repository>Local</Repository>
+        <Path>
+          <Object>
+            <Type>Window</Type>
+            <Name><![CDATA[Editor]]></Name>
+          </Object>
+          <Object>
+            <Type>WinEditor</Type>
+            <Name><![CDATA[Edit]]></Name>
+          </Object>
+        </Path>
+        <Operation>Click</Operation>
+        <Properties>
+          <Property>
+            <Name><![CDATA[nativeclass]]></Name>
+            <Value><![CDATA[Edit]]></Value>
+          </Property>
+        </Properties>
+      </TestObject>
+      <IconKey>5ed9c033f8c746b08f1d0b04cfedc349</IconKey>
+      <IsPlainTextNodeName>True</IsPlainTextNodeName>
+    </Extension>
+    <DeviceInfo />
+  </Data>
+</ReportNode>
+<Data>
+    <Name>Editor</Name>
+    <Description>Window</Description>
+    <StartTime>2023-02-09 13:15:05</StartTime>
+    <Duration>1</Duration>
+    <Result>Done</Result>
+    <Extension>
+      <TestObject>
+        <Repository>Local</Repository>
+        <Path>
+          <Object>
+            <Type>Window</Type>
+            <Name><![CDATA[Editor]]></Name>
+          </Object>
+        </Path>
+        <OperationData><![CDATA[Window]]></OperationData>
+        <Properties>
+          <Property>
+            <Name><![CDATA[regexpwndtitle]]></Name>
+            <Value><![CDATA[Editor]]></Value>
+          </Property>
+          <Property>
+            <Name><![CDATA[regexpwndclass]]></Name>
+            <Value><![CDATA[Notepad]]></Value>
+          </Property>
+          <Property>
+            <Name><![CDATA[is owned window]]></Name>
+            <Value><![CDATA[False]]></Value>
+          </Property>
+          <Property>
+            <Name><![CDATA[is child window]]></Name>
+            <Value><![CDATA[False]]></Value>
+          </Property>
+        </Properties>
+      </TestObject>
+      <IconKey>439e47013faf43c8b68765ff4a806dd4</IconKey>
+      <IsPlainTextNodeName>True</IsPlainTextNodeName>
+    </Extension>
+  </Data>
+</ReportNode>
+<ReportNode type="User">
+<Data>
+    <Name>AVL_SOFTWAREVERSION</Name>
+    <Description>AVL_SOFTWAREVERSION exists in CMD successfully!</Description>
+    <StartTime>2023-02-09 13:15:06</StartTime>
+    <Result>Passed</Result>
+    <Extension>
+      <IconKey>a4d746cd6813432998cf14ae119dce68</IconKey>
+      <IsPlainTextNodeName>True</IsPlainTextNodeName>
+      <IsPlainTextStepInfo>True</IsPlainTextStepInfo>
+    </Extension>
+  </Data>
+</ReportNode>
+<ReportNode type="User">
+<Data>
+    <Name>BMW_IMIB_SYSTEMSOFTWARE</Name>
+    <Description>BMW_IMIB_SYSTEMSOFTWARE exists in CMD successfully!</Description>
+    <StartTime>2023-02-09 13:15:06</StartTime>
+    <Result>Passed</Result>
+    <Extension>
+      <IconKey>a4d746cd6813432998cf14ae119dce68</IconKey>
+      <IsPlainTextNodeName>True</IsPlainTextNodeName>
+      <IsPlainTextStepInfo>True</IsPlainTextStepInfo>
+    </Extension>
+  </Data>
+</ReportNode>
+<ReportNode type="User">
+<Data>
+    <Name>BMW_SOFTWAREVERSION</Name>
+    <Description>BMW_SOFTWAREVERSION exists in CMD successfully!</Description>
+    <StartTime>2023-02-09 13:15:06</StartTime>
+    <Result>Passed</Result>
+    <Extension>
+      <IconKey>a4d746cd6813432998cf14ae119dce68</IconKey>
+      <IsPlainTextNodeName>True</IsPlainTextNodeName>
+      <IsPlainTextStepInfo>True</IsPlainTextStepInfo>
+    </Extension>
+  </Data>
+</ReportNode>
+<ReportNode type="User">
+<Data>
+    <Name>ISVMType</Name>
+    <Description>ISVMType exists in CMD successfully!</Description>
+    <StartTime>2023-02-09 13:15:06</StartTime>
+    <Result>Passed</Result>
+    <Extension>
+      <IconKey>a4d746cd6813432998cf14ae119dce68</IconKey>
+      <IsPlainTextNodeName>True</IsPlainTextNodeName>
+      <IsPlainTextStepInfo>True</IsPlainTextStepInfo>
+    </Extension>
+  </Data>
+</ReportNode>
+<ReportNode type="User">
+<Data>
+    <Name>SN</Name>
+    <Description>SN exists in CMD successfully!</Description>
+    <StartTime>2023-02-09 13:15:06</StartTime>
+    <Result>Passed</Result>
+    <Extension>
+      <IconKey>a4d746cd6813432998cf14ae119dce68</IconKey>
+      <IsPlainTextNodeName>True</IsPlainTextNodeName>
+      <IsPlainTextStepInfo>True</IsPlainTextStepInfo>
+    </Extension>
+  </Data>
+</ReportNode>
+<ReportNode type="User">
+<Data>
+    <Name>TYPE</Name>
+    <Description>TYPE exists in CMD successfully!</Description>
+    <StartTime>2023-02-09 13:15:06</StartTime>
+    <Result>Passed</Result>
+    <Extension>
+      <IconKey>a4d746cd6813432998cf14ae119dce68</IconKey>
+      <IsPlainTextNodeName>True</IsPlainTextNodeName>
+      <IsPlainTextStepInfo>True</IsPlainTextStepInfo>
+    </Extension>
+  </Data>
+</ReportNode>
+<Data>
+    <Name>Action1</Name>
+    <Description />
+    <StartTime>2023-02-09 13:15:02</StartTime>
+    <Duration>10</Duration>
+    <Result>Passed</Result>
+    <InputParameters />
+    <Extension>
+      <IconKey>f75b2a767b724bb1a4fdc39da7232a73</IconKey>
+      <IsPlainTextNodeName>True</IsPlainTextNodeName>
+    </Extension>
+  </Data>
+</ReportNode>
+<Data>
+    <Name>Action0</Name>
+    <Description />
+    <StartTime>2023-02-09 13:15:02</StartTime>
+    <Duration>10</Duration>
+    <Result>Passed</Result>
+    <Extension>
+      <IconKey>b5103381797a4456a7393b338c780a7f</IconKey>
+      <IsPlainTextNodeName>True</IsPlainTextNodeName>
+    </Extension>
+    <Index>1</Index>
+    <TestedApplications />
+  </Data>
+</ReportNode>
+<Data>
+    <Name>[IMIBNext] IMIB_Datenbank</Name>
+    <ToolName>Micro Focus Unified Functional Testing</ToolName>
+    <ToolVersion>0</ToolVersion>
+    <ToolVersionStringLiteral>15.0.2</ToolVersionStringLiteral>
+    <Description />
+    <StartTime>2023-02-09 13:15:02</StartTime>
+    <Duration>10</Duration>
+    <Result>Passed</Result>
+    <InputParameters />
+    <Extension>
+      <IconKey>f7a2143e6d7f4d44b2276dcfbac0cf16</IconKey>
+      <IsPlainTextNodeName>True</IsPlainTextNodeName>
+    </Extension>
+    <Environment>
+      <Timezone>+01:00:00</Timezone>
+      <Locale>Deutsch (Deutschland)</Locale>
+      <User>MUC\QMWASI2</User>
+      <CpuInfo>Intel(R) Core(TM) i5-9500 CPU @ 3.00GHz</CpuInfo>
+      <NumberOfCores>6</NumberOfCores>
+      <TotalMemory>16158</TotalMemory>
+      <HostName>europe.bmw.corp\IMUC880018</HostName>
+      <OSInfo>Windows 10</OSInfo>
+    </Environment>
+    <TestedApplications />
+    <Links>
+      <Link type="DataTable" reference="Default.xlsx" displayname="Default Data Table" />
+    </Links>
+  </Data>
+</ReportNode>
+<GeneralInfo>
+    <ResultName>Report</ResultName>
+    <RunStartTime>2023-02-09 13:15:02</RunStartTime>
+    <Timezone>+01:00:00</Timezone>
+    <OrchestrationToolName>Micro Focus Unified Functional Testing</OrchestrationToolName>
+    <OrchestrationToolVersion>0</OrchestrationToolVersion>
+    <OrchestrationToolVersionStringLiteral>15.0.2</OrchestrationToolVersionStringLiteral>
+  </GeneralInfo>
+</Results>
