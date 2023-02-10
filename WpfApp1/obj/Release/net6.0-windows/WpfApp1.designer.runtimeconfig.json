@@ -12,8 +12,8 @@
       }
     ],
     "additionalProbingPaths": [
-      "C:\\Users\\m.mahmoud\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\m.mahmoud\\.nuget\\packages"
+      "C:\\Users\\qmwasi2\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\qmwasi2\\.nuget\\packages"
     ],
     "configProperties": {
       "System.Reflection.Metadata.MetadataUpdater.IsSupported": false,

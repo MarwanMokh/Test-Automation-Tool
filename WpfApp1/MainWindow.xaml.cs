@@ -51,12 +51,14 @@ namespace WpfApp1
         private const int WS_MAXIMIZEBOX = 0x10000; //maximize button
         private const int WS_MINIMIZEBOX = 0x20000; //minimize button
         public object ItemCollection { get; private set; }
-
+        [DllImport("user32", CharSet = CharSet.Auto)]
+        public static extern int EnableWindow(IntPtr hwnd, bool bEnable);
         public MainWindow()
         {
             InitializeComponent();
            this.SourceInitialized += MainWindow_SourceInitialized;
-          
+           this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+
         }
 
         
@@ -74,14 +76,14 @@ namespace WpfApp1
                     {
                         var dir = new DirectoryInfo(d);
                         var dirName = dir.Name;
-                        String XMLTCStatusFilePath = TCsFolderPath + dirName + @"\Report\Report\run_results.xml";
+                        String XMLTCStatusFilePath = TCsFolderPath + dirName + @"\Report\Report\run_results";
                         checkTCStatus(XMLTCStatusFilePath, dirName);
                         folders.Add(new Folder() { FolderName = dirName, FolderPath = TCsFolderPath + dirName, TCStatus = str_TCStatus_in_Label , TCStatusColor= str_TCStatusColor });
 
                     }
                     else
                     {
-                        MessageBox.Show("No TCs Starting with [IMIBNext] are Found!", "TCs Folder", MessageBoxButton.OK, MessageBoxImage.Information);
+                        //MessageBox.Show("No TCs Starting with [IMIBNext] are Found!", "TCs Folder", MessageBoxButton.OK, MessageBoxImage.Information);
 
                     }
                 }
@@ -161,10 +163,11 @@ namespace WpfApp1
 
         private void BTN_Click(object sender, RoutedEventArgs e)
         {
+            kill_UFT();
             String command = @"UFTBatchRunnerCMD.exe -visible N -source " + '"' + selectedItem + '"';
             StartProcess(command);
             UpdateList();
-            //kill_UFT();
+            kill_UFT();
 
         }
         private static void StartProcess(String command)
@@ -174,7 +177,7 @@ namespace WpfApp1
             process.StartInfo.CreateNoWindow= true;
             process.StartInfo.RedirectStandardInput = true;
             process.StartInfo.RedirectStandardOutput = true;
-            process.StartInfo.UseShellExecute= false;
+            //process.StartInfo.UseShellExecute= false;
             process.Start();
             process.StandardInput.WriteLine(@"cd C:\Windows\system32");
             process.StandardInput.WriteLine(command);
@@ -218,8 +221,9 @@ namespace WpfApp1
         }
         public void checkTCStatus(String XMLTCStatusFilePath, String TCName)
         {
-            String XmlFilePath = XMLTCStatusFilePath;
-            if (File.Exists(XmlFilePath))
+            String XmlFilePath = XMLTCStatusFilePath+@".xml";
+            String HTMLFilePath = XMLTCStatusFilePath+@".html";
+            if (File.Exists(XmlFilePath) && File.Exists(HTMLFilePath))
             {
                 XmlDataDocument xmldoc = new XmlDataDocument();
                 XmlNodeList xmlnodelist;
@@ -281,15 +285,17 @@ namespace WpfApp1
                 listviewTCs.ItemsSource = folders;
             }
         }
+       
 
-        /*private void kill_UFT()
+        private void kill_UFT()
         {
             foreach (var process in Process.GetProcessesByName("UFT"))
             {
                 process.Kill();
             }
            //Process.GetProcessesByName("UFT.exe").kill
-        }*/
+        }
+       
     }
 }
 

@@ -1,0 +1,5 @@
+C:\Users\qmwasi2\Desktop\WpfApp1.exe
+C:\Users\qmwasi2\Desktop\WpfApp1.dll
+C:\Users\qmwasi2\Desktop\WpfApp1.deps.json
+C:\Users\qmwasi2\Desktop\WpfApp1.runtimeconfig.json
+C:\Users\qmwasi2\Desktop\WpfApp1.pdb

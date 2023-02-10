@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\m.mahmoud\source\repos\WpfApp1\WpfApp1\obj\Debug\net6.0-windows\
+C:\project\Test-Automation-Tool-main\WpfApp1\obj\Debug\net6.0-windows\
 WpfApp1
 none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
-C:\Users\m.mahmoud\source\repos\WpfApp1\WpfApp1\App.xaml
+C:\project\Test-Automation-Tool-main\WpfApp1\App.xaml
 11407045341
 
 6-974954934
 194237474483
 MainWindow.xaml;
 
-False
+True
 

@@ -8,19 +8,19 @@
     "net6.0-windows7.0": []
   },
   "packageFolders": {
-    "C:\\Users\\m.mahmoud\\.nuget\\packages\\": {}
+    "C:\\Users\\qmwasi2\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\m.mahmoud\\source\\repos\\WpfApp1\\WpfApp1\\WpfApp1.csproj",
+      "projectUniqueName": "C:\\project\\Test-Automation-Tool-main\\WpfApp1\\WpfApp1.csproj",
       "projectName": "WpfApp1",
-      "projectPath": "C:\\Users\\m.mahmoud\\source\\repos\\WpfApp1\\WpfApp1\\WpfApp1.csproj",
-      "packagesPath": "C:\\Users\\m.mahmoud\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\m.mahmoud\\source\\repos\\WpfApp1\\WpfApp1\\obj\\",
+      "projectPath": "C:\\project\\Test-Automation-Tool-main\\WpfApp1\\WpfApp1.csproj",
+      "packagesPath": "C:\\Users\\qmwasi2\\.nuget\\packages\\",
+      "outputPath": "C:\\project\\Test-Automation-Tool-main\\WpfApp1\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\m.mahmoud\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\qmwasi2\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
