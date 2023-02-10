@@ -5,9 +5,11 @@ using System.Data;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Net.Security;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,6 +22,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 using System.Xml;
 
 namespace WpfApp1
@@ -39,6 +42,9 @@ namespace WpfApp1
         bool bool_TCStatus_Passed = false;
         String str_TCStatus_in_Label = "unknown";
         String str_TCStatusColor = "Black";
+        bool workCompleted= false;
+        bool bool_ReportAvailability = false;
+        BackgroundWorker worker = new BackgroundWorker();
 
 
         [DllImport("user32.dll")]
@@ -56,12 +62,58 @@ namespace WpfApp1
         public MainWindow()
         {
             InitializeComponent();
-           this.SourceInitialized += MainWindow_SourceInitialized;
+            //--------------------Worker----------------
+            worker.DoWork += Worker_DoWork;
+            worker.RunWorkerCompleted += worker_RunWorkerCompleted;
+            
+            //------------------------------------------
+            this.SourceInitialized += MainWindow_SourceInitialized;
            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-
+           
         }
 
         
+
+
+        //----------------------Worker------------------------
+        private delegate void mydelegate(int i); 
+        private void displayi(int i) 
+        {
+            //lblProcess.Content= "Background Workd: "+i.ToString();
+        }
+        private void Worker_DoWork(object sender, DoWorkEventArgs e) 
+        {
+            if (worker.CancellationPending)
+            {
+                e.Cancel= true;
+                return;
+            }
+            kill_UFT();
+            String command = @"UFTBatchRunnerCMD.exe -visible N -source " + '"' + selectedItem + '"';
+            StartProcess(command);
+
+        }
+        private void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if (!e.Cancelled)
+            {
+                UpdateList();
+                kill_UFT();
+                workCompleted = true;
+                btnStop.IsEnabled= false;
+                BTN.IsEnabled= true;
+                //lblComplete.Content = "Complete Background Work";
+            }
+            else
+            {
+                UpdateList();
+                kill_UFT();
+                workCompleted = true;
+
+                //lblComplete.Content = "Fail";
+            }
+        }
+        //---------------------------------------------------
 
         private void ViewTestCasesfolders(String TCsFolderPath)
         {
@@ -78,7 +130,7 @@ namespace WpfApp1
                         var dirName = dir.Name;
                         String XMLTCStatusFilePath = TCsFolderPath + dirName + @"\Report\Report\run_results";
                         checkTCStatus(XMLTCStatusFilePath, dirName);
-                        folders.Add(new Folder() { FolderName = dirName, FolderPath = TCsFolderPath + dirName, TCStatus = str_TCStatus_in_Label , TCStatusColor= str_TCStatusColor });
+                        folders.Add(new Folder() { FolderName = dirName, FolderPath = TCsFolderPath + dirName, TCStatus = str_TCStatus_in_Label , TCStatusColor= str_TCStatusColor , Folder_bool_ReportAvailability = bool_ReportAvailability});
 
                     }
                     else
@@ -121,6 +173,7 @@ namespace WpfApp1
             public string FolderPath { get; set; } = string.Empty;
             public string TCStatus { get; set; } = string.Empty;
             public string TCStatusColor { get; set; } = string.Empty;
+            public bool Folder_bool_ReportAvailability { get; set; }
         }
 
 
@@ -156,6 +209,7 @@ namespace WpfApp1
             {
                 Folder file = (Folder)listviewTCs.SelectedItems[0];
                 selectedItem = file.FolderPath;
+                btnReportViewer.IsEnabled= file.Folder_bool_ReportAvailability;
             }                
             
             //MessageBox.Show(file.FolderPath);
@@ -163,15 +217,31 @@ namespace WpfApp1
 
         private void BTN_Click(object sender, RoutedEventArgs e)
         {
-            kill_UFT();
-            String command = @"UFTBatchRunnerCMD.exe -visible N -source " + '"' + selectedItem + '"';
-            StartProcess(command);
-            UpdateList();
-            kill_UFT();
+            BTN.IsEnabled = false;
+            btnStop.IsEnabled= true;
+            worker.RunWorkerAsync();
+
+            for (int i = 0; i < 100; i++)
+            {
+                if (workCompleted)
+                {
+                    for (int j = i; j<100; j++)
+                    {
+                        System.Threading.Thread.Sleep(50);
+                        pb1.Dispatcher.Invoke(() => pb1.Value = 100, DispatcherPriority.Background); Thread.Sleep(50);
+                    }
+                    break;
+                }
+                System.Threading.Thread.Sleep(800);
+                mydelegate deli = new mydelegate(displayi);
+                pb1.Dispatcher.Invoke(() => pb1.Value = i, DispatcherPriority.Background); Thread.Sleep(50);
+                //pb1.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Normal, deli, i);
+            }
 
         }
-        private static void StartProcess(String command)
+            private static void StartProcess(String command)
         {
+
             Process process= new Process();
             process.StartInfo.FileName= "cmd.exe";
             process.StartInfo.CreateNoWindow= true;
@@ -184,7 +254,7 @@ namespace WpfApp1
             process.StandardInput.Flush();
             process.StandardInput.Close();
             process.WaitForExit();
-            MessageBox.Show(process.StandardOutput.ReadToEnd());
+            //MessageBox.Show(process.StandardOutput.ReadToEnd());
             
 
         }
@@ -208,7 +278,7 @@ namespace WpfApp1
         private void btnReportViewer_Click(object sender, RoutedEventArgs e)
         {
             String reportFileName = selectedItem + @"\Report\Report\run_results.html";
-           
+            pb1.Dispatcher.Invoke(() => pb1.Value = 0, DispatcherPriority.Background);
             if (File.Exists(reportFileName))
             {
                 Process.Start(new ProcessStartInfo { FileName = reportFileName, UseShellExecute = true });
@@ -225,6 +295,7 @@ namespace WpfApp1
             String HTMLFilePath = XMLTCStatusFilePath+@".html";
             if (File.Exists(XmlFilePath) && File.Exists(HTMLFilePath))
             {
+                bool_ReportAvailability = true;
                 XmlDataDocument xmldoc = new XmlDataDocument();
                 XmlNodeList xmlnodelist;
                 FileStream fs = new FileStream(XmlFilePath, FileMode.Open, FileAccess.Read);
@@ -263,6 +334,7 @@ namespace WpfApp1
                 boolTCStatus_Unknown = true;
                 str_TCStatus_in_Label = "No Run";
                 str_TCStatusColor = "Black";
+                bool_ReportAvailability = false;
                 // TC status is unknown
             }
 
@@ -295,7 +367,17 @@ namespace WpfApp1
             }
            //Process.GetProcessesByName("UFT.exe").kill
         }
-       
+
+        private void ProgressBar_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+
+        }
+
+        private void btnStop_Click(object sender, RoutedEventArgs e)
+        {
+            worker.WorkerSupportsCancellation = true;
+            worker.CancelAsync();
+        }
     }
 }
 

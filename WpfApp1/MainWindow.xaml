@@ -27,7 +27,7 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    
+
                     <!--   <GridViewColumn Header="Action">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
@@ -43,12 +43,26 @@
                     -->
                 </GridView>
             </ListView.View>
-            
+
 
         </ListView>
 
         <Button x:Name="btnViewList" Content="View Test Cases List" Canvas.Top="10" Height="51" Width="156" Click="btnViewList_Click"/>
-        <Button x:Name="BTN" Content="Run" Canvas.Left="206" Canvas.Top="26" Click="BTN_Click" HorizontalAlignment="Left" VerticalAlignment="Center" Width="35">
+        <Button x:Name="BTN" Content="Run" Canvas.Left="206" Canvas.Top="26" Click="BTN_Click" HorizontalAlignment="Left" VerticalAlignment="Center" Width="35" Height="20">
+            <!--<Button.Triggers>
+                <EventTrigger RoutedEvent="Button.Click">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation
+                                Storyboard.TargetName = "pb1"
+                                Storyboard.TargetProperty= "Value"
+                                From="0" To="100" Duration="0:0:2"/>
+
+                        </Storyboard>
+                    </BeginStoryboard>
+
+                </EventTrigger>
+            </Button.Triggers>-->
             <Button.Style>
                 <Style TargetType="Button">
                     <Setter Property="IsEnabled" Value="False"/>
@@ -62,8 +76,9 @@
                 </Style>
             </Button.Style>
 
+
         </Button>
-        <Button x:Name="btnReportViewer" Content="Report" Canvas.Left="260" Canvas.Top="26" Click="btnReportViewer_Click" RenderTransformOrigin="2.254,0.754" HorizontalAlignment="Left" VerticalAlignment="Center">
+        <Button x:Name="btnReportViewer" Content="Report" Canvas.Left="640" Canvas.Top="26" Click="btnReportViewer_Click" RenderTransformOrigin="2.254,0.754" HorizontalAlignment="Left" VerticalAlignment="Center" Height="20">
             <Button.Style>
                 <Style TargetType="Button">
                     <Setter Property="IsEnabled" Value="False"/>
@@ -71,13 +86,15 @@
                         <DataTrigger 
                     Binding="{Binding ElementName=listviewTCs, Path=SelectedItems.Count}" 
                     Value="1">
-                            <Setter Property="IsEnabled" Value="true"/>
+                            <Setter Property="IsEnabled" Value="{Binding Folder_bool_ReportAvailability}"/>
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
             </Button.Style>
         </Button>
-      
+        <ProgressBar x:Name="pb1" Height="10" Canvas.Left="300" Canvas.Top="31" Width="321" HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal" ValueChanged="ProgressBar_ValueChanged"/>
+        <Button Name="btnStop" Content="Stop" Canvas.Left="255" Canvas.Top="26" Height="20" Click="btnStop_Click" HorizontalAlignment="Left" IsEnabled="False" VerticalAlignment="Center"/>
+
     </Canvas>
 
 </Window>
